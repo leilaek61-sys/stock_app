@@ -1,19 +1,190 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-    <title>Inscription</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion de Stock - Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <i class="fas fa-cube"></i>
+                </div>
+                <div class="sidebar-title">
+                    <h2>Gestion Stock</h2>
+                    <p>Dashboard</p>
+                </div>
+            </div>
 
-<h1>Inscription</h1>
+            <nav class="sidebar-menu">
+                <li>
+                    <a href="#" class="active">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Tableau de bord</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#products">
+                        <i class="fas fa-boxes"></i>
+                        <span>Produits</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#categories">
+                        <i class="fas fa-list"></i>
+                        <span>Catégories</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#reports">
+                        <i class="fas fa-file-alt"></i>
+                        <span>Rapports</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#settings">
+                        <i class="fas fa-cog"></i>
+                        <span>Paramètres</span>
+                    </a>
+                </li>
+            </nav>
 
-<form method="POST">
-    <input type="text" name="username" placeholder="Username" required><br>
-    <input type="password" name="password" placeholder="Password" required><br>
-    <button type="submit">S'inscrire</button>
-</form>
+            <div class="sidebar-logout">
+                <button class="btn-logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Déconnexion
+                </button>
+            </div>
+        </aside>
 
-<a href="/login">Déjà un compte ? Login</a>
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <div class="header">
+                <div class="header-title">
+                    <h1>Tableau de bord</h1>
+                    <p>Bienvenue dans votre espace de gestion de stock</p>
+                </div>
+                <div class="header-actions">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Rechercher un produit...">
+                    </div>
+                    <button class="btn-primary" id="addProductBtn">
+                        <i class="fas fa-plus"></i>
+                        Ajouter un produit
+                    </button>
+                </div>
+            </div>
 
+            <!-- Statistics Cards -->
+            <div class="stats-grid">
+                <!-- Stats will be populated by JavaScript -->
+            </div>
+
+            <!-- Products Section -->
+            <div class="products-section">
+                <div class="section-header">
+                    <h2>Inventaire des produits</h2>
+                    <div style="display: flex; gap: 10px;">
+                        <button class="btn-primary" style="padding: 8px 15px; font-size: 13px;">
+                            <i class="fas fa-download"></i>
+                            Exporter
+                        </button>
+                        <button class="btn-primary" style="padding: 8px 15px; font-size: 13px;">
+                            <i class="fas fa-filter"></i>
+                            Filtrer
+                        </button>
+                    </div>
+                </div>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Produit</th>
+                                <th>Catégorie</th>
+                                <th>Quantité</th>
+                                <th>Prix</th>
+                                <th>Statut</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Products will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Product Modal -->
+    <div id="productModal" class="modal-form">
+        <div class="modal-form-content">
+            <div class="modal-form-header">
+                <span id="productFormTitle">Ajouter un produit</span>
+                <button class="modal-form-close">&times;</button>
+            </div>
+
+            <form id="productForm">
+                <input type="hidden" id="productId">
+
+                <div class="form-group-modal">
+                    <label for="productName">Nom du produit</label>
+                    <input type="text" id="productName" required>
+                </div>
+
+                <div class="form-group-modal">
+                    <label for="productCategory">Catégorie</label>
+                    <select id="productCategory" required>
+                        <option value="">Sélectionner une catégorie</option>
+                        <option value="Électronique">Électronique</option>
+                        <option value="Accessoires">Accessoires</option>
+                        <option value="Câbles">Câbles</option>
+                        <option value="Logiciels">Logiciels</option>
+                        <option value="Autres">Autres</option>
+                    </select>
+                </div>
+
+                <div class="form-group-modal">
+                    <label for="productQuantity">Quantité</label>
+                    <input type="number" id="productQuantity" min="0" required>
+                </div>
+
+                <div class="form-group-modal">
+                    <label for="productPrice">Prix unitaire ($)</label>
+                    <input type="number" id="productPrice" min="0" step="0.01" required>
+                </div>
+
+                <div class="form-group-modal">
+                    <label for="productStatus">Statut</label>
+                    <select id="productStatus" required>
+                        <option value="En stock">En stock</option>
+                        <option value="Faible stock">Faible stock</option>
+                        <option value="Rupture">Rupture</option>
+                    </select>
+                </div>
+
+                <div class="modal-form-buttons">
+                    <button type="submit" class="btn-submit">
+                        <i class="fas fa-save"></i>
+                        Enregistrer
+                    </button>
+                    <button type="button" class="btn-cancel" onclick="closeProductModal()">
+                        <i class="fas fa-times"></i>
+                        Annuler
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>

@@ -1,0 +1,60 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Admin",
+      "username": "admin",
+      "password": "admin123",
+      "email": "admin@gestion.com"
+    },
+    {
+      "id": 2,
+      "name": "User",
+      "username": "user",
+      "password": "user123",
+      "email": "user@gestion.com"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Laptop Dell",
+      "category": "Électronique",
+      "quantity": 15,
+      "price": 899.99,
+      "status": "En stock"
+    },
+    {
+      "id": 2,
+      "name": "Souris Logitech",
+      "category": "Accessoires",
+      "quantity": 45,
+      "price": 29.99,
+      "status": "En stock"
+    },
+    {
+      "id": 3,
+      "name": "Clavier Mécanique",
+      "category": "Accessoires",
+      "quantity": 8,
+      "price": 149.99,
+      "status": "Faible stock"
+    },
+    {
+      "id": 4,
+      "name": "Moniteur 27\"",
+      "category": "Électronique",
+      "quantity": 0,
+      "price": 349.99,
+      "status": "Rupture"
+    },
+    {
+      "id": 5,
+      "name": "Câble HDMI",
+      "category": "Câbles",
+      "quantity": 120,
+      "price": 12.99,
+      "status": "En stock"
+    }
+  ]
+}
